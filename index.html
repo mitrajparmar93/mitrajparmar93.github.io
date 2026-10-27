@@ -300,37 +300,41 @@ h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); letter-spacing: -0.045em; line-hei
 .platform-note strong { color: var(--text); font-weight: 600; }
 
 /* ---------- Experience ---------- */
-.xp { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 40px 64px; }
-.xp .head { position: sticky; top: 110px; align-self: start; flex-direction: column; align-items: start; }
-@media (max-width: 900px) { .xp { grid-template-columns: 1fr; } .xp .head { position: static; } }
 .span-bar { margin-top: 28px; width: 100%; }
 .span-bar .track { display: flex; height: 8px; gap: 3px; border-radius: 999px; overflow: hidden; }
 .span-bar .track i { flex: var(--m) 1 0; background: #283158; }
 .span-bar .track i.amz { background: linear-gradient(90deg, var(--ice), var(--dawn)); }
 .span-bar .yrs { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 8px; }
 
-.orbit { margin: 28px 0 0; width: 100%; max-width: 380px; }
-.orbit svg { width: 100%; height: auto; display: block; overflow: visible; }
-.orbit .ring { fill: none; stroke: rgba(190,200,255,.12); stroke-width: 1; transition: stroke .3s; }
-.orbit .ring.on { stroke: rgba(255,178,122,.55); stroke-dasharray: none; }
-.orbit .core-glow { fill: rgba(120,140,255,.10); filter: blur(14px); }
-.orbit .core { stroke: rgba(169,184,255,.35); stroke-width: 1; }
-.orbit text { pointer-events: none; }
-.orbit .core-big { fill: var(--text); font: 600 17px var(--sans); letter-spacing: -.02em; }
-.orbit .core-small { fill: var(--muted); font: 400 10.5px var(--mono); }
-.orbit .sat { cursor: pointer; outline: none; }
-.orbit .sat .hit { fill: transparent; }
-.orbit .sat .halo { opacity: 0; transition: opacity .25s; }
-.orbit .sat .body { stroke: rgba(5,8,22,.9); stroke-width: 2; }
-.orbit .sat.amz .body { fill: var(--dawn); } .orbit .sat.amz .halo { fill: rgba(255,178,122,.25); }
-.orbit .sat.pre .body { fill: var(--ice); }  .orbit .sat.pre .halo { fill: rgba(169,184,255,.25); }
-.orbit .sat:hover .halo, .orbit .sat:focus-visible .halo, .orbit .sat.on .halo { opacity: 1; }
-.orbit .sat.on .body, .orbit .sat:focus-visible .body { stroke: #fff; }
-.orbit figcaption { font-size: 13.5px; color: var(--faint); line-height: 1.55; margin-top: 14px; }
-.orbit .okey { display: flex; gap: 16px; margin-top: 8px; align-items: center; }
-.orbit .okey i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: -8px; }
-.orbit .okey .k-amz { background: var(--dawn); } .orbit .okey .k-pre { background: var(--ice); margin-left: 4px; }
-@media (max-width: 900px) { .orbit { max-width: 340px; margin: 24px auto 0; } }
+.traj { margin: 0 0 40px; position: relative; }
+.traj svg { width: 100%; display: block; overflow: visible; }
+.traj .limb { fill: #0A1030; stroke: rgba(255,190,150,.45); stroke-width: 1; }
+.traj .path-bg { fill: none; stroke: rgba(190,200,255,.22); stroke-width: 1.5; stroke-dasharray: 3 5; }
+.traj .seg { fill: none; stroke-width: 3; stroke-linecap: round; }
+.traj .seg.amz { stroke: var(--dawn); } .traj .seg.pre { stroke: var(--ice); }
+.traj .yr { fill: var(--faint); font: 400 11px var(--mono); }
+.traj .tj { cursor: pointer; outline: none; }
+.traj .tj .hit { fill: transparent; }
+.traj .tj .dot { stroke: var(--space); stroke-width: 2; transition: stroke .2s; }
+.traj .tj.amz .dot { fill: var(--dawn); } .traj .tj.pre .dot { fill: var(--ice); }
+.traj .tj .halo { opacity: 0; transition: opacity .2s; }
+.traj .tj.amz .halo { fill: rgba(255,178,122,.25); } .traj .tj.pre .halo { fill: rgba(169,184,255,.25); }
+.traj .tj:hover .halo, .traj .tj:focus-visible .halo, .traj .tj.on .halo { opacity: 1; }
+.traj .tj.on .dot, .traj .tj:focus-visible .dot { stroke: #fff; }
+.traj .tj .nm { fill: var(--text); font: 600 13px var(--sans); letter-spacing: -.01em; }
+.traj .tj .dt { fill: var(--faint); font: 400 11px var(--mono); }
+.traj .tj:hover .nm, .traj .tj.on .nm { fill: #fff; }
+.traj .now-ring { fill: none; stroke: var(--dawn); stroke-width: 1.2; transform-box: fill-box; transform-origin: center; animation: nowping 2.4s ease-out infinite; }
+@keyframes nowping { from { transform: scale(1); opacity: .8; } to { transform: scale(3.2); opacity: 0; } }
+.traj.pre .seg { stroke-dashoffset: var(--len); stroke-dasharray: var(--len); }
+.traj.pre .tj { opacity: 0; }
+.traj.anim .seg { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: tdraw .45s linear forwards; animation-delay: var(--d); }
+.traj.anim .tj { opacity: 0; animation: tpop .4s ease forwards; animation-delay: var(--d2); }
+@keyframes tdraw { to { stroke-dashoffset: 0; } }
+@keyframes tpop { to { opacity: 1; } }
+.traj figcaption { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--faint); margin-top: 14px; }
+.traj figcaption i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; }
+@media (prefers-reduced-motion: reduce) { .traj .now-ring { animation: none; opacity: 0; } }
 .roles { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .roles details { border-bottom: 1px solid var(--line); interpolate-size: allow-keywords; }
 .roles details::details-content { height: 0; overflow: clip; transition: height .45s cubic-bezier(.2,.7,.1,1), content-visibility .45s allow-discrete; }
@@ -590,27 +594,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 
 <!-- ================= EXPERIENCE ================= -->
 <section class="section" id="experience" aria-labelledby="xp-h">
-  <div class="wrap xp">
+  <div class="wrap">
     <div class="head">
       <h2 id="xp-h">Experience</h2>
       <p>Eleven years, starting with airline networks and now on Amazon's satellite program.</p>
-      <figure class="orbit">
-        <svg id="orbit" viewBox="-200 -200 400 400" role="group" aria-label="Career orbit: one satellite per role. Select one to open it.">
-          <defs>
-            <radialGradient id="core-g" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#1D2766"/><stop offset="1" stop-color="#070B22"/></radialGradient>
-          </defs>
-          <circle class="core-glow" r="70"/>
-          <g id="rings"></g>
-          <circle class="core" r="44" fill="url(#core-g)"/>
-          <text class="core-big" y="-1" text-anchor="middle">11 yrs</text>
-          <text class="core-small" y="18" text-anchor="middle">2015 – now</text>
-          <g id="sats"></g>
-        </svg>
-        <figcaption>Each ring is a role, newest closest to the center. A satellite's size shows how long I was there. Select one to open it.
-          <span class="okey"><i class="k-amz"></i>Amazon <i class="k-pre"></i>Before Amazon</span>
-        </figcaption>
-      </figure>
     </div>
+    <figure class="traj" id="traj-fig">
+      <svg id="traj" role="group" aria-label="Career trajectory from 2015 to now. Select a role to open its details."></svg>
+      <figcaption><span><i style="background:var(--dawn)"></i>Amazon</span><span><i style="background:var(--ice)"></i>Before Amazon</span><span>Dot size shows time in the role. Select one to open it.</span></figcaption>
+    </figure>
 
     <div class="roles">
       <details id="xp-leo" open>
@@ -992,57 +984,88 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   new IntersectionObserver(([e]) => { const was = fVis; fVis = e.isIntersecting; if (fVis && !was) { fLast = performance.now(); requestAnimationFrame(fleet); } }).observe(fc);
   if (reduce) { fT = 3; requestAnimationFrame(fleet); }
 
-  /* ---------- Career orbit ---------- */
+  /* ---------- Career trajectory ---------- */
   (() => {
-    const svgO = document.getElementById('orbit'); if (!svgO) return;
-    const NSO = 'http://www.w3.org/2000/svg';
-    const roles = [ // newest first = innermost ring; months in role
-      { id: 'leo',    name: 'Amazon Leo',     dates: '2026 – now',  m: 10, amz: true },
-      { id: 'aft',    name: 'Robotics',       dates: '2024 – 2026', m: 20, amz: true },
-      { id: 'aws',    name: 'AWS',            dates: '2022 – 2024', m: 27, amz: true },
-      { id: 'adp',    name: 'ADP',            dates: '2019 – 2022', m: 35, amz: false },
-      { id: 'paypal', name: 'PayPal',         dates: '2018 – 2019', m: 5,  amz: false },
-      { id: 'delta',  name: 'Delta',          dates: '2015 – 2018', m: 34, amz: false },
+    const fig = document.getElementById('traj-fig'), svgT = document.getElementById('traj'); if (!svgT) return;
+    const NST = 'http://www.w3.org/2000/svg';
+    const T0 = 2015.75, T1 = 2026.82;
+    const roles = [ // decimal years
+      { id: 'delta',  long: 'Delta Air Lines', short: 'Delta',    a: 2015.83, b: 2018.67, d: '2015 – 2018', amz: false },
+      { id: 'paypal', long: 'PayPal',          short: 'PayPal',   a: 2018.67, b: 2019.08, d: '2018 – 2019', amz: false },
+      { id: 'adp',    long: 'ADP',             short: 'ADP',      a: 2019.17, b: 2022.08, d: '2019 – 2022', amz: false },
+      { id: 'aws',    long: 'AWS',             short: 'AWS',      a: 2022.08, b: 2024.33, d: '2022 – 2024', amz: true },
+      { id: 'aft',    long: 'Amazon Robotics', short: 'Robotics', a: 2024.33, b: 2026.0,  d: '2024 – 2026', amz: true },
+      { id: 'leo',    long: 'Amazon Leo',      short: 'Leo',      a: 2026.0,  b: T1,      d: '2026 – now',  amz: true },
     ];
-    const ringsG = document.getElementById('rings'), satsG = document.getElementById('sats');
-    const big = svgO.querySelector('.core-big'), small = svgO.querySelector('.core-small');
-    roles.forEach((r, i) => {
-      r.r = 66 + i * 25; r.size = 3.5 + r.m * 0.27;
-      r.a = -Math.PI / 2 + i * 2.15; r.w = 0.22 * Math.pow(66 / r.r, 1.5);
-      const ring = document.createElementNS(NSO, 'circle'); ring.setAttribute('class', 'ring'); ring.setAttribute('r', r.r); ringsG.appendChild(ring); r.ring = ring;
-      const g = document.createElementNS(NSO, 'g');
-      g.setAttribute('class', 'sat ' + (r.amz ? 'amz' : 'pre')); g.setAttribute('tabindex', '0'); g.setAttribute('role', 'button');
-      g.setAttribute('aria-label', `${document.querySelector('#xp-' + r.id + ' .co').textContent}, ${r.dates.replace('–', 'to')}. Open role details.`);
-      g.innerHTML = `<circle class="hit" r="${Math.max(14, r.size + 8)}"/><circle class="halo" r="${r.size + 7}"/><circle class="body" r="${r.size}"/>`;
-      satsG.appendChild(g); r.g = g; r.det = document.getElementById('xp-' + r.id);
-    });
-    const label = r => { big.textContent = r ? r.name : '11 yrs'; small.textContent = r ? r.dates : '2015 – now'; };
-    let active = null, hover = null, paused = false, overSvg = false;
-    svgO.addEventListener('pointerenter', () => overSvg = true); svgO.addEventListener('pointerleave', () => overSvg = false);
-    const setActive = r => { active = r; roles.forEach(o => { o.g.classList.toggle('on', o === r); o.ring.classList.toggle('on', o === r); }); label(hover || r); };
-    const openRole = r => {
-      r.det.open = true; setActive(r);
-      r.det.querySelector('summary').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-    };
-    roles.forEach(r => {
-      r.g.addEventListener('click', () => openRole(r));
-      r.g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openRole(r); } });
-      const on = () => { hover = r; paused = true; label(r); }, off = () => { hover = null; paused = false; label(active); };
-      r.g.addEventListener('pointerenter', on); r.g.addEventListener('pointerleave', off);
-      r.g.addEventListener('focus', on); r.g.addEventListener('blur', off);
-      r.det.addEventListener('toggle', () => { if (r.det.open) setActive(r); else if (active === r) setActive(roles.find(o => o.det.open) || null); });
-    });
-    setActive(roles.find(o => o.det.open) || null);
-    const place = () => roles.forEach(r => r.g.setAttribute('transform', `translate(${(Math.cos(r.a) * r.r).toFixed(2)} ${(Math.sin(r.a) * r.r).toFixed(2)})`));
-    place();
-    if (reduce) return;
-    let last = performance.now(), vis = false;
-    const tick = now => {
-      const dt = Math.min(.05, (now - last) / 1000); last = now;
-      if (!paused && !overSvg && !svgO.contains(document.activeElement)) { roles.forEach(r => r.a += r.w * dt); place(); }
-      if (vis) requestAnimationFrame(tick);
-    };
-    new IntersectionObserver(([e]) => { const was = vis; vis = e.isIntersecting; if (vis && !was) { last = performance.now(); requestAnimationFrame(tick); } }).observe(svgO);
+    roles.forEach(r => r.det = document.getElementById('xp-' + r.id));
+    const mk = (p, t, a, txt) => { const e = document.createElementNS(NST, t); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; p.appendChild(e); return e; };
+    let active = null, animate = !reduce && 'IntersectionObserver' in window, drawn = false;
+
+    function draw() {
+      const W = Math.round(fig.clientWidth); if (!W) return;
+      const vertical = W < 640, short = W < 900;
+      svgT.textContent = '';
+      let H, P, yearPos;
+      if (!vertical) {
+        H = 300; const X0 = 24, X1 = W - 70;
+        P = t => { const u = (t - T0) / (T1 - T0); return [X0 + u * (X1 - X0), H - 62 - (H - 140) * Math.pow(u, 1.35)]; };
+        mk(svgT, 'path', { class: 'limb', d: `M -40 ${H - 24} Q ${W * 0.26} ${H - 84} ${W * 0.58} ${H - 24} Z` });
+        mk(svgT, 'line', { x1: 0, y1: H - 24, x2: W, y2: H - 24, stroke: 'rgba(190,200,255,.12)' });
+        yearPos = y => [P(y)[0], H - 6, 'middle'];
+      } else {
+        H = 600; const Y0 = H - 50, Y1 = 30;
+        P = t => { const u = (t - T0) / (T1 - T0); return [44 + (W * 0.22) * Math.pow(u, 1.35), Y0 - u * (Y0 - Y1)]; };
+        mk(svgT, 'path', { class: 'limb', d: `M -30 ${H + 10} Q ${W * 0.45} ${H - 64} ${W + 30} ${H + 10} Z` });
+        yearPos = y => [0, P(y)[1] + 4, 'start'];
+      }
+      svgT.setAttribute('viewBox', `0 0 ${W} ${H}`); svgT.setAttribute('height', H);
+      [2016, 2018, 2020, 2022, 2024, 2026].forEach(y => { const [x, yy, anc] = yearPos(y); mk(svgT, 'text', { class: 'yr', x, y: yy, 'text-anchor': anc }, y); });
+      let full = ''; for (let t = T0; t <= T1 + 1e-6; t += 0.05) { const [x, y] = P(t); full += (full ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1); }
+      mk(svgT, 'path', { class: 'path-bg', d: full });
+      const total = T1 - T0, dur = 2.4;
+      roles.forEach(r => {
+        let d = ''; for (let t = r.a + .05; t <= r.b - .05 + 1e-6; t += 0.03) { const [x, y] = P(t); d += (d ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1); }
+        const seg = mk(svgT, 'path', { class: 'seg ' + (r.amz ? 'amz' : 'pre'), d });
+        seg.style.setProperty('--len', Math.ceil(seg.getTotalLength()) + 1);
+        seg.style.setProperty('--d', ((r.a - T0) / total * dur).toFixed(2) + 's');
+      });
+      roles.forEach(r => {
+        const mid = (r.a + r.b) / 2, [x, y] = P(mid), months = (r.b - r.a) * 12, sz = 4 + months * 0.2;
+        const g = mk(svgT, 'g', { class: 'tj ' + (r.amz ? 'amz' : 'pre') + (active === r ? ' on' : ''), tabindex: 0, role: 'button',
+          'aria-label': `${r.long}, ${r.d.replace('–', 'to')}. Open role details.` });
+        g.style.setProperty('--d2', (((r.b - T0) / total) * dur).toFixed(2) + 's');
+        const name = short ? r.short : r.long;
+        let nx, ny, dx, dy, anc;
+        if (vertical) { nx = x + sz + 12; ny = y - 1; dx = nx; dy = y + 14; anc = 'start'; }
+        else if (r.below) { nx = x; ny = y + sz + 20; dx = x; dy = ny + 15; anc = 'middle'; }
+        else { nx = x; ny = y - sz - 12; dx = x; dy = ny - 16; anc = 'middle'; }
+        const hw = vertical ? 150 : 70;
+        mk(g, 'rect', { class: 'hit', x: vertical ? x - sz - 6 : x - hw, y: Math.min(y, ny, dy) - 16, width: vertical ? hw + sz + 40 : hw * 2, height: Math.abs(Math.max(y, ny, dy) - Math.min(y, ny, dy)) + 30 });
+        mk(g, 'circle', { class: 'halo', cx: x, cy: y, r: sz + 7 });
+        if (r.id === 'leo') mk(g, 'circle', { class: 'now-ring', cx: x, cy: y, r: sz });
+        mk(g, 'circle', { class: 'dot', cx: x, cy: y, r: sz });
+        mk(g, 'text', { class: 'nm', x: nx, y: ny, 'text-anchor': anc }, name);
+        mk(g, 'text', { class: 'dt', x: dx, y: dy, 'text-anchor': anc }, r.d);
+        g.addEventListener('click', () => openRole(r));
+        g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openRole(r); } });
+        r.g = g;
+      });
+    }
+    const setActive = r => { active = r; roles.forEach(o => o.g && o.g.classList.toggle('on', o === r)); };
+    const openRole = r => { r.det.open = true; setActive(r); r.det.querySelector('summary').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); };
+    roles.forEach(r => r.det.addEventListener('toggle', () => { if (r.det.open) setActive(r); else if (active === r) setActive(roles.find(o => o.det.open) || null); }));
+    active = roles.find(o => o.det.open) || null;
+    draw();
+    let lastW = fig.clientWidth, rt;
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (fig.clientWidth !== lastW) { lastW = fig.clientWidth; fig.classList.remove('anim', 'pre'); draw(); } }, 120); });
+    if (animate) {
+      const r0 = fig.getBoundingClientRect();
+      if (r0.top > innerHeight * 0.9) {
+        fig.classList.add('pre');
+        const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { fig.classList.remove('pre'); fig.classList.add('anim'); io.disconnect(); } }, { threshold: 0.35 });
+        io.observe(fig);
+      }
+    }
   })();
 
   /* ---------- Tile spotlight ---------- */
