@@ -309,6 +309,28 @@ h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); letter-spacing: -0.045em; line-hei
 .span-bar .track i.amz { background: linear-gradient(90deg, var(--ice), var(--dawn)); }
 .span-bar .yrs { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 8px; }
 
+.orbit { margin: 28px 0 0; width: 100%; max-width: 380px; }
+.orbit svg { width: 100%; height: auto; display: block; overflow: visible; }
+.orbit .ring { fill: none; stroke: rgba(190,200,255,.12); stroke-width: 1; transition: stroke .3s; }
+.orbit .ring.on { stroke: rgba(255,178,122,.55); stroke-dasharray: none; }
+.orbit .core-glow { fill: rgba(120,140,255,.10); filter: blur(14px); }
+.orbit .core { stroke: rgba(169,184,255,.35); stroke-width: 1; }
+.orbit text { pointer-events: none; }
+.orbit .core-big { fill: var(--text); font: 600 17px var(--sans); letter-spacing: -.02em; }
+.orbit .core-small { fill: var(--muted); font: 400 10.5px var(--mono); }
+.orbit .sat { cursor: pointer; outline: none; }
+.orbit .sat .hit { fill: transparent; }
+.orbit .sat .halo { opacity: 0; transition: opacity .25s; }
+.orbit .sat .body { stroke: rgba(5,8,22,.9); stroke-width: 2; }
+.orbit .sat.amz .body { fill: var(--dawn); } .orbit .sat.amz .halo { fill: rgba(255,178,122,.25); }
+.orbit .sat.pre .body { fill: var(--ice); }  .orbit .sat.pre .halo { fill: rgba(169,184,255,.25); }
+.orbit .sat:hover .halo, .orbit .sat:focus-visible .halo, .orbit .sat.on .halo { opacity: 1; }
+.orbit .sat.on .body, .orbit .sat:focus-visible .body { stroke: #fff; }
+.orbit figcaption { font-size: 13.5px; color: var(--faint); line-height: 1.55; margin-top: 14px; }
+.orbit .okey { display: flex; gap: 16px; margin-top: 8px; align-items: center; }
+.orbit .okey i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: -8px; }
+.orbit .okey .k-amz { background: var(--dawn); } .orbit .okey .k-pre { background: var(--ice); margin-left: 4px; }
+@media (max-width: 900px) { .orbit { max-width: 340px; margin: 24px auto 0; } }
 .roles { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .roles details { border-bottom: 1px solid var(--line); interpolate-size: allow-keywords; }
 .roles details::details-content { height: 0; overflow: clip; transition: height .45s cubic-bezier(.2,.7,.1,1), content-visibility .45s allow-discrete; }
@@ -328,6 +350,16 @@ h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); letter-spacing: -0.045em; line-hei
 .roles details[open] .pm::after { opacity: 0; }
 .roles summary:hover .co { color: #fff; }
 .roles ul { margin: 0; padding: 0 60px 28px 4px; list-style: none; }
+.role-body { padding: 0 60px 30px 4px; }
+.role-body ul:not(.tags) { padding: 0 0 4px; }
+.role-intro { color: var(--text); opacity: .86; font-size: 15.5px; max-width: 64ch; margin: 0 0 16px; }
+.role-body .tags { margin: 14px 0 0; padding: 0; }
+.role-body .tags li { padding: 4px 11px; margin: 0; color: #B9C1E4; font-size: 12.5px; max-width: none; }
+.role-body .tags li::before { content: none; }
+.sub { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; margin: 6px 0 10px; }
+.sub b { font-weight: 600; letter-spacing: -.01em; }
+.sub span { font-family: var(--mono); font-size: 13px; color: var(--faint); }
+@media (max-width: 560px) { .role-body { padding-right: 0; } }
 .roles li { position: relative; padding-left: 22px; margin-bottom: 10px; color: var(--muted); font-size: 15.5px; max-width: 64ch; }
 .roles li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--ice); opacity: .7; }
 @media (max-width: 560px) {
@@ -562,54 +594,111 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="head">
       <h2 id="xp-h">Experience</h2>
       <p>Eleven years, starting with airline networks and now on Amazon's satellite program.</p>
-      <div class="span-bar" aria-hidden="true">
-        <div class="track"><i style="--m:34"></i><i style="--m:5"></i><i style="--m:35"></i><i class="amz" style="--m:27"></i><i class="amz" style="--m:20"></i><i class="amz" style="--m:10"></i></div>
-        <div class="yrs"><span>2015</span><span>2022</span><span>Now</span></div>
-      </div>
+      <figure class="orbit">
+        <svg id="orbit" viewBox="-200 -200 400 400" role="group" aria-label="Career orbit: one satellite per role. Select one to open it.">
+          <defs>
+            <radialGradient id="core-g" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#1D2766"/><stop offset="1" stop-color="#070B22"/></radialGradient>
+          </defs>
+          <circle class="core-glow" r="70"/>
+          <g id="rings"></g>
+          <circle class="core" r="44" fill="url(#core-g)"/>
+          <text class="core-big" y="-1" text-anchor="middle">11 yrs</text>
+          <text class="core-small" y="18" text-anchor="middle">2015 – now</text>
+          <g id="sats"></g>
+        </svg>
+        <figcaption>Each ring is a role, newest closest to the center. A satellite's size shows how long I was there. Select one to open it.
+          <span class="okey"><i class="k-amz"></i>Amazon <i class="k-pre"></i>Before Amazon</span>
+        </figcaption>
+      </figure>
     </div>
 
     <div class="roles">
-      <details open>
-        <summary><span class="co">Amazon Leo</span><span class="ti">Systems Development Engineer II</span><span class="dt">2026 – now</span><span class="pm" aria-hidden="true"></span></summary>
-        <ul>
-          <li>Design, build and run the AWS infrastructure behind the engineering and productivity platforms of Amazon's satellite program, in commercial regions and GovCloud.</li>
-          <li>Run the infrastructure for a toolchain that more than 10,000 people depend on.</li>
-          <li>Run SAP infrastructure for manufacturing and supply chain, including HANA high availability on Pacemaker clusters, patched through Ansible and Systems Manager.</li>
-          <li>Lead disaster recovery design and multi-account network migrations for business-critical systems.</li>
-          <li>Led the alarm redesign from volume-based to impact-correlated signals, and serve as Tier-1 on-call and incident commander.</li>
-        </ul>
+      <details id="xp-leo" open>
+        <summary><span class="co">Amazon Leo</span><span class="ti">Systems Development Engineer II</span><span class="dt">Jan 2026 – now</span><span class="pm" aria-hidden="true"></span></summary>
+        <div class="role-body">
+          <p class="role-intro">Austin, TX. The team designs, builds and runs the backend infrastructure behind the productivity and engineering platforms of Amazon's satellite program, in commercial AWS and GovCloud.</p>
+          <ul>
+            <li>Run the infrastructure under an engineering toolchain that more than 10,000 people depend on: Jira, Confluence, Bitbucket, Bamboo, Jama Connect, TestRail, NextCloud, Tosca and NeoLoad.</li>
+            <li>Own SAP infrastructure for manufacturing and supply chain beneath the application layer: compute, networking, account structure, patching and monitoring. HANA high availability runs on Pacemaker clusters, patched through Ansible and Systems Manager.</li>
+            <li>Build AWS integrations with SAP S/4HANA, SAP HANA System Replication, SAP Business Technology Platform and Solution Manager.</li>
+            <li>Own a fleet of engineering license servers end to end, from build and patching to renewal and decommissioning.</li>
+            <li>Deliver new platforms from design to production, including data integrations, disaster recovery for manufacturing systems and batch job scheduling.</li>
+            <li>Led a measurement-driven redesign of production alarming, replacing volume-based alerts with impact-correlated CloudWatch signals, backed by an analysis tool that ranks alarms by whether they track real impact.</li>
+            <li>Serve as Tier-1 on-call and incident commander for business-critical manufacturing systems, including root-cause analysis and the written follow-up.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>AWS</li><li>GovCloud</li><li>SAP HANA</li><li>Pacemaker</li><li>Ansible</li><li>Systems Manager</li><li>CloudWatch</li><li>Atlassian</li></ul>
+        </div>
       </details>
-      <details>
-        <summary><span class="co">Amazon Fulfillment Technologies &amp; Robotics</span><span class="ti">Systems Development Engineer II, Managed Edge Compute</span><span class="dt">2024 – 2026</span><span class="pm" aria-hidden="true"></span></summary>
-        <ul>
-          <li>Provisioned and automated a 300K+ device fleet and its Debian-based successor, designed for 1.5M+ devices.</li>
-          <li>Contributed to AmazonEdgeOS: immutable Linux with RAUC A/B updates and TPM2 encryption.</li>
-          <li>Built fleet-wide security posture monitoring from scratch as a self-serve platform that other teams join without filing a ticket.</li>
-          <li>Cut telemetry noise at the source and consolidated logging and provisioning tooling across the fleet's packages.</li>
-          <li>Served as Tier-1 resolver in two on-call rotations for global fulfillment and mentored interns.</li>
-        </ul>
+      <details id="xp-aft">
+        <summary><span class="co">Amazon Fulfillment Technologies &amp; Robotics</span><span class="ti">Systems Development Engineer II, Managed Edge Compute</span><span class="dt">May 2024 – Jan 2026</span><span class="pm" aria-hidden="true"></span></summary>
+        <div class="role-body">
+          <p class="role-intro">Austin, TX. Provisioning and automation for Amazon's fulfillment and robotics devices, spanning a legacy fleet of 300K+ TinyCore Linux devices on Greengrass v1 and a Debian-based successor designed to scale to 1.5M+ devices worldwide.</p>
+          <ul>
+            <li>Contributed to AmazonEdgeOS, Amazon Robotics' first internal Linux distribution: an immutable Ubuntu-based OS with RAUC A/B partition updates and TPM2 encryption and unlock.</li>
+            <li>Delivered security and compliance through Greengrass components and custom Debian agents for posture monitoring, package mirrors and secure updates.</li>
+            <li>Built fleet-wide security posture monitoring from scratch as a modular, self-serve platform that other teams join without filing a ticket.</li>
+            <li>Built pipelines for internal Debian repositories with Python, Aptly and fpm, distributing authenticated packages to devices at scale through CloudFront.</li>
+            <li>Made CI/CD more reliable with automated testing, telemetry and observability, cutting deployment failures. Consolidated logging and provisioning tooling across the fleet's packages.</li>
+            <li>Served as Tier-1 resolver in two on-call rotations, follow-the-sun for new systems and 24×7 for legacy fleets.</li>
+            <li>Mentored interns and co-led device health and security initiatives.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>Debian</li><li>Ubuntu</li><li>RAUC</li><li>TPM2</li><li>Greengrass</li><li>Python</li><li>Aptly</li><li>CloudFront</li></ul>
+        </div>
       </details>
-      <details>
-        <summary><span class="co">Amazon Web Services</span><span class="ti">Systems Development Engineer II, Systems Engineer</span><span class="dt">2022 – 2024</span><span class="pm" aria-hidden="true"></span></summary>
-        <ul>
-          <li>Built automation for Amazon's global data centers to make the hardware supply chain faster and more reliable.</li>
-          <li>Built security and patching automation that other teams adopted, and set the continuous-delivery standard the team still follows.</li>
-        </ul>
+      <details id="xp-aws">
+        <summary><span class="co">Amazon Web Services</span><span class="ti">Systems Development Engineer II, Systems Engineer</span><span class="dt">Feb 2022 – May 2024</span><span class="pm" aria-hidden="true"></span></summary>
+        <div class="role-body">
+          <div class="sub"><b>Systems Development Engineer II</b><span>Oct 2022 – May 2024, Austin, TX</span></div>
+          <ul>
+            <li>Built automation for Amazon's global data centers to make the hardware supply chain faster and more reliable.</li>
+            <li>Engineered tools that streamlined operational processes, and built security and patching automation that other teams adopted.</li>
+            <li>Set the continuous-delivery standard the team still follows.</li>
+          </ul>
+          <div class="sub"><b>Systems Engineer</b><span>Feb 2022 – Oct 2022</span></div>
+          <ul><li>Supply chain automation.</li></ul>
+        </div>
       </details>
-      <details>
-        <summary><span class="co">ADP</span><span class="ti">Lead Infrastructure Engineer, Design Engineer III</span><span class="dt">2019 – 2022</span><span class="pm" aria-hidden="true"></span></summary>
-        <ul>
-          <li>F5 application delivery as code with AS3, orchestrated through Ansible Tower.</li>
-          <li>Layer 7 routing and API security for the enterprise production network; migrations to 10 Gig environments.</li>
-        </ul>
+      <details id="xp-adp">
+        <summary><span class="co">ADP</span><span class="ti">Lead Infrastructure Engineer, Design Engineer III</span><span class="dt">Mar 2019 – Feb 2022</span><span class="pm" aria-hidden="true"></span></summary>
+        <div class="role-body">
+          <p class="role-intro">Los Angeles, CA. Global Web Security Engineering team. Promoted to Lead Infrastructure Engineer in August 2021.</p>
+          <ul>
+            <li>Ran F5 load balancers (LTM, GTM) and automated application delivery as code with AS3, with F5 Telemetry Streaming.</li>
+            <li>Turned common changes into automated jobs across every environment with Ansible Tower, including production F5 configuration management.</li>
+            <li>Managed Layer 7 routing and policy servers for API security in the production network, and worked with Shape bot defense.</li>
+            <li>Migrated applications from legacy lower-throughput environments to 10 Gig environments.</li>
+            <li>Built Python and shell tools for routine network operations, and automated SiteScope monitoring updates whenever a monitored appliance's configuration changed.</li>
+            <li>Ran HAProxy on AWS EC2 and OpenResty load balancing in hybrid cloud, with CI/CD in Jenkins and GitLab.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>F5 BIG-IP</li><li>AS3</li><li>Ansible Tower</li><li>Python</li><li>HAProxy</li><li>Jenkins</li><li>Dynatrace</li><li>Grafana</li></ul>
+        </div>
       </details>
-      <details>
-        <summary><span class="co">PayPal</span><span class="ti">Sr. Network and Security Engineer (Principal Consultant)</span><span class="dt">2018 – 2019</span><span class="pm" aria-hidden="true"></span></summary>
-        <ul><li>Vulnerability assessment and remediation for load balancers and applications; root-cause analysis in Splunk.</li></ul>
+      <details id="xp-paypal">
+        <summary><span class="co">PayPal</span><span class="ti">Sr. Network and Security Engineer (Principal Consultant)</span><span class="dt">Sep 2018 – Feb 2019</span><span class="pm" aria-hidden="true"></span></summary>
+        <div class="role-body">
+          <p class="role-intro">San Francisco Bay Area.</p>
+          <ul>
+            <li>Ran application and system vulnerability assessments, with reports covering proof of findings, risk analysis and remediation steps.</li>
+            <li>Worked with application, server and network teams to remediate vulnerabilities, mainly on F5 load balancers.</li>
+            <li>Built virtualized F5 instances and global load balancing with Tcl iRules, and monitored the network passively with ExtraHop.</li>
+            <li>Led root-cause analysis in Splunk and managed vendor relationships for network services.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>F5</li><li>iRules (Tcl)</li><li>ExtraHop</li><li>Splunk</li></ul>
+        </div>
       </details>
-      <details>
-        <summary><span class="co">Delta Air Lines</span><span class="ti">Network Engineer</span><span class="dt">2015 – 2018</span><span class="pm" aria-hidden="true"></span></summary>
-        <ul><li>DNS, DHCP, load balancing and PKI for the airline's network. Automated certificate renewal by integrating F5 with Venafi.</li></ul>
+      <details id="xp-delta">
+        <summary><span class="co">Delta Air Lines</span><span class="ti">Network Engineer</span><span class="dt">Nov 2015 – Sep 2018</span><span class="pm" aria-hidden="true"></span></summary>
+        <div class="role-body">
+          <p class="role-intro">Atlanta, GA.</p>
+          <ul>
+            <li>Designed, tested and supported network infrastructure, including Infoblox DNS, DHCP and IP address management, and F5 load balancing (LTM, GTM, BIG-IQ, Enterprise Manager).</li>
+            <li>Managed X.509 certificates across an internal PKI and third-party CAs, and integrated F5 with Venafi to automate certificate renewal and validation.</li>
+            <li>Did capacity planning and full network designs with cost estimates, product recommendations and implementation plans.</li>
+            <li>Troubleshot at the packet level with tcpdump, ssldump, Wireshark, Gigamon, Observer and Riverbed, and ran root-cause analysis to stop repeat outages.</li>
+            <li>Coached network and support staff, and provided on-site and on-call support.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>F5 BIG-IP</li><li>Infoblox</li><li>Venafi</li><li>PKI</li><li>Wireshark</li><li>IPv6</li></ul>
+        </div>
       </details>
     </div>
   </div>
@@ -902,6 +991,59 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   }
   new IntersectionObserver(([e]) => { const was = fVis; fVis = e.isIntersecting; if (fVis && !was) { fLast = performance.now(); requestAnimationFrame(fleet); } }).observe(fc);
   if (reduce) { fT = 3; requestAnimationFrame(fleet); }
+
+  /* ---------- Career orbit ---------- */
+  (() => {
+    const svgO = document.getElementById('orbit'); if (!svgO) return;
+    const NSO = 'http://www.w3.org/2000/svg';
+    const roles = [ // newest first = innermost ring; months in role
+      { id: 'leo',    name: 'Amazon Leo',     dates: '2026 – now',  m: 10, amz: true },
+      { id: 'aft',    name: 'Robotics',       dates: '2024 – 2026', m: 20, amz: true },
+      { id: 'aws',    name: 'AWS',            dates: '2022 – 2024', m: 27, amz: true },
+      { id: 'adp',    name: 'ADP',            dates: '2019 – 2022', m: 35, amz: false },
+      { id: 'paypal', name: 'PayPal',         dates: '2018 – 2019', m: 5,  amz: false },
+      { id: 'delta',  name: 'Delta',          dates: '2015 – 2018', m: 34, amz: false },
+    ];
+    const ringsG = document.getElementById('rings'), satsG = document.getElementById('sats');
+    const big = svgO.querySelector('.core-big'), small = svgO.querySelector('.core-small');
+    roles.forEach((r, i) => {
+      r.r = 66 + i * 25; r.size = 3.5 + r.m * 0.27;
+      r.a = -Math.PI / 2 + i * 2.15; r.w = 0.22 * Math.pow(66 / r.r, 1.5);
+      const ring = document.createElementNS(NSO, 'circle'); ring.setAttribute('class', 'ring'); ring.setAttribute('r', r.r); ringsG.appendChild(ring); r.ring = ring;
+      const g = document.createElementNS(NSO, 'g');
+      g.setAttribute('class', 'sat ' + (r.amz ? 'amz' : 'pre')); g.setAttribute('tabindex', '0'); g.setAttribute('role', 'button');
+      g.setAttribute('aria-label', `${document.querySelector('#xp-' + r.id + ' .co').textContent}, ${r.dates.replace('–', 'to')}. Open role details.`);
+      g.innerHTML = `<circle class="hit" r="${Math.max(14, r.size + 8)}"/><circle class="halo" r="${r.size + 7}"/><circle class="body" r="${r.size}"/>`;
+      satsG.appendChild(g); r.g = g; r.det = document.getElementById('xp-' + r.id);
+    });
+    const label = r => { big.textContent = r ? r.name : '11 yrs'; small.textContent = r ? r.dates : '2015 – now'; };
+    let active = null, hover = null, paused = false, overSvg = false;
+    svgO.addEventListener('pointerenter', () => overSvg = true); svgO.addEventListener('pointerleave', () => overSvg = false);
+    const setActive = r => { active = r; roles.forEach(o => { o.g.classList.toggle('on', o === r); o.ring.classList.toggle('on', o === r); }); label(hover || r); };
+    const openRole = r => {
+      r.det.open = true; setActive(r);
+      r.det.querySelector('summary').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    };
+    roles.forEach(r => {
+      r.g.addEventListener('click', () => openRole(r));
+      r.g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openRole(r); } });
+      const on = () => { hover = r; paused = true; label(r); }, off = () => { hover = null; paused = false; label(active); };
+      r.g.addEventListener('pointerenter', on); r.g.addEventListener('pointerleave', off);
+      r.g.addEventListener('focus', on); r.g.addEventListener('blur', off);
+      r.det.addEventListener('toggle', () => { if (r.det.open) setActive(r); else if (active === r) setActive(roles.find(o => o.det.open) || null); });
+    });
+    setActive(roles.find(o => o.det.open) || null);
+    const place = () => roles.forEach(r => r.g.setAttribute('transform', `translate(${(Math.cos(r.a) * r.r).toFixed(2)} ${(Math.sin(r.a) * r.r).toFixed(2)})`));
+    place();
+    if (reduce) return;
+    let last = performance.now(), vis = false;
+    const tick = now => {
+      const dt = Math.min(.05, (now - last) / 1000); last = now;
+      if (!paused && !overSvg && !svgO.contains(document.activeElement)) { roles.forEach(r => r.a += r.w * dt); place(); }
+      if (vis) requestAnimationFrame(tick);
+    };
+    new IntersectionObserver(([e]) => { const was = vis; vis = e.isIntersecting; if (vis && !was) { last = performance.now(); requestAnimationFrame(tick); } }).observe(svgO);
+  })();
 
   /* ---------- Tile spotlight ---------- */
   document.querySelectorAll('.tile').forEach(t => t.addEventListener('pointermove', e => {
