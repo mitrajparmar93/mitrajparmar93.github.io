@@ -40,7 +40,7 @@
     { "@type": "CollegeOrUniversity", "name": "Nova Southeastern University" },
     { "@type": "CollegeOrUniversity", "name": "Gujarat Technological University" }
   ],
-  "knowsAbout": ["AWS", "Site reliability engineering", "Infrastructure as code", "Linux", "Edge device fleets", "Observability", "Incident response", "Network security", "LLM gateways", "Model Context Protocol (MCP)", "Agentic AI", "ITAR", "EAR", "Export compliance"],
+  "knowsAbout": ["AWS", "Site reliability engineering", "Infrastructure as code", "Linux", "Edge device fleets", "Observability", "Incident response", "Network security", "LLM gateways", "Model Context Protocol (MCP)", "Agentic AI", "ITAR", "EAR", "Export compliance", "SAP NS2", "AWS Transit Gateway"],
   "sameAs": ["https://www.linkedin.com/in/mitrajparmar"]
 }
 </script>
@@ -231,7 +231,10 @@ h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); letter-spacing: -0.045em; line-hei
 .ai-flow .gw { fill: rgba(255,178,122,.08); stroke: rgba(255,178,122,.55); }
 .ai-flow .ln { stroke: rgba(190,200,255,.4); stroke-width: 1.5; fill: none; marker-end: url(#arw); }
 .ai-flow .cap { font-size: 12.5px; color: var(--faint); margin: 10px 2px 0; }
-@media (max-width: 1000px) { .t-ai { grid-column: span 2; grid-template-columns: 1fr; } }
+.t-ns2 { grid-column: span 6; display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px 40px; align-items: start; }
+.t-ns2 .ai-copy p:not(.where) { margin: 0 0 14px; }
+.t-ns2 .ai-copy { display: flex; flex-direction: column; }
+@media (max-width: 1000px) { .t-ai, .t-ns2 { grid-column: span 2; grid-template-columns: 1fr; } }
 .reach { margin-top: auto; padding-top: 18px; }
 .reach .bar { height: 8px; border-radius: 99px; background: rgba(190,200,255,.10); overflow: hidden; }
 .reach .bar i { display: block; height: 100%; width: 13.3%; border-radius: 99px; background: linear-gradient(90deg, var(--ice), var(--dawn)); }
@@ -243,7 +246,7 @@ h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); letter-spacing: -0.045em; line-hei
 }
 @media (max-width: 620px) {
   .bento { grid-template-columns: 1fr; }
-  .t-alarm, .t-fleet, .t-tf, .t-health, .t-ai, .t-users, .t-oncall { grid-column: auto; }
+  .t-alarm, .t-fleet, .t-tf, .t-health, .t-ai, .t-ns2, .t-users, .t-oncall { grid-column: auto; }
   .tile { padding: 24px; border-radius: 22px; }
 }
 .where { font-size: 13.5px; color: var(--faint); margin: 0 0 10px; }
@@ -508,6 +511,29 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         </figure>
       </article>
 
+      <article class="tile t-ns2">
+        <div class="ai-copy">
+          <p class="where">Amazon Leo, 2026</p>
+          <h3>Moving a tier-1 manufacturing system to SAP NS2</h3>
+          <p>One of the tier-1 systems behind satellite manufacturing needed to move to the NS2 Secure Cloud, run by SAP National Security Services. I helped design the new infrastructure, connected through AWS Transit Gateway, and owned the execution of the full migration.</p>
+          <p>The project was expected to miss its deadline. It was delivered before the deadline.</p>
+          <ul class="tags"><li>SAP NS2</li><li>Transit Gateway</li><li>SAP</li><li>Migration</li><li>Network design</li></ul>
+        </div>
+        <figure class="ai-flow">
+          <svg viewBox="0 0 520 170" role="img" aria-label="Diagram: Amazon Leo's AWS environment connects through AWS Transit Gateway to the SAP NS2 Secure Cloud, where the migrated tier-1 manufacturing system now runs.">
+            <rect class="bx" x="4" y="50" width="140" height="70" rx="12"/>
+            <text x="20" y="80">Amazon Leo</text><text class="sub" x="20" y="100">AWS accounts</text>
+            <rect class="gw" x="190" y="50" width="140" height="70" rx="14"/>
+            <text x="206" y="80">Transit</text><text x="206" y="100">Gateway</text>
+            <rect class="bx" x="376" y="50" width="140" height="70" rx="12"/>
+            <text x="392" y="80">SAP NS2</text><text class="sub" x="392" y="100">tier-1 system</text>
+            <path class="ln" d="M146 85 H 188" marker-start="url(#arw)"/>
+            <path class="ln" d="M332 85 H 374" marker-start="url(#arw)"/>
+          </svg>
+          <figcaption class="cap">Simplified view of the connectivity after the migration.</figcaption>
+        </figure>
+      </article>
+
       <article class="tile t-alarm">
         <p class="where">Amazon Leo, 2026</p>
         <h3>Alarms tied to real impact</h3>
@@ -601,6 +627,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <div class="role-body">
           <p class="role-intro">Austin, TX. The team owns the infrastructure for Amazon Leo's tier-1 systems, which run SAP and support satellite manufacturing, along with the program's productivity and engineering platforms, in commercial AWS and GovCloud. The team now also owns secure AI for engineers across the program.</p>
           <ul>
+            <li>Helped design and owned the execution of a tier-1 satellite-manufacturing system's migration to the SAP National Security Services (NS2) Secure Cloud, connected through AWS Transit Gateway. Delivered before the deadline on a project expected to run late.</li>
             <li>Co-designed and co-own a secure LLM gateway and MCP servers that let Amazon Leo engineers in export-controlled environments use AI for the first time, with the security controls and audit trail that ITAR and EAR compliance requires.</li>
             <li>Own an agentic triage tool, now in security certification, that triages pipeline, build, patching and vulnerability issues across EC2, ECS and EKS. It keeps a shared memory of known good and bad fixes, and drafts code reviews for a human to approve.</li>
           <li>Run the infrastructure under an engineering toolchain that more than 10,000 people depend on: Jira, Confluence, Bitbucket, Bamboo, Jama Connect, TestRail, NextCloud, Tosca and NeoLoad.</li>
@@ -611,7 +638,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
             <li>Led a measurement-driven redesign of production alarming, replacing volume-based alerts with impact-correlated CloudWatch signals, backed by an analysis tool that ranks alarms by whether they track real impact.</li>
             <li>Serve as Tier-1 on-call and incident commander for business-critical manufacturing systems, including root-cause analysis and the written follow-up.</li>
           </ul>
-          <ul class="tags" aria-label="Tools"><li>AWS</li><li>GovCloud</li><li>SAP HANA</li><li>Pacemaker</li><li>Ansible</li><li>Systems Manager</li><li>CloudWatch</li><li>LLM gateways</li><li>MCP</li><li>ITAR and EAR</li><li>Atlassian</li></ul>
+          <ul class="tags" aria-label="Tools"><li>AWS</li><li>GovCloud</li><li>SAP HANA</li><li>Pacemaker</li><li>Ansible</li><li>Systems Manager</li><li>CloudWatch</li><li>LLM gateways</li><li>MCP</li><li>ITAR and EAR</li><li>SAP NS2</li><li>Transit Gateway</li><li>Atlassian</li></ul>
         </div>
       </details>
       <details id="xp-aft">
@@ -705,7 +732,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       </div>
       <div>
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>Linux and edge</h3>
-        <ul class="chips"><li>Debian</li><li>Ubuntu</li><li>Immutable OS</li><li>RAUC</li><li>TPM2</li><li>Aptly</li><li>fpm</li><li>IoT Greengrass</li><li>SAP HANA on AWS</li></ul>
+        <ul class="chips"><li>Debian</li><li>Ubuntu</li><li>Immutable OS</li><li>RAUC</li><li>TPM2</li><li>Aptly</li><li>fpm</li><li>IoT Greengrass</li><li>SAP HANA on AWS</li><li>SAP NS2</li></ul>
       </div>
       <div>
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Reliability and security</h3>
