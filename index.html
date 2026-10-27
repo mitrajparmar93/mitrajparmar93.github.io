@@ -13,14 +13,14 @@
 <meta property="og:url" content="https://mitrajparmar93.github.io/">
 <meta property="og:site_name" content="Mitraj Parmar">
 <meta property="og:title" content="Mitraj Parmar · Infrastructure & Reliability Engineer">
-<meta property="og:description" content="I build and run infrastructure that stays up.">
+<meta property="og:description" content="Infrastructure engineer at Amazon, working on cloud and edge systems.">
 <meta property="og:image" content="https://mitrajparmar93.github.io/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Mitraj Parmar: I build and run infrastructure that stays up.">
+<meta property="og:image:alt" content="Mitraj Parmar: Infrastructure engineer at Amazon, working on cloud and edge systems.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mitraj Parmar · Infrastructure & Reliability Engineer">
-<meta name="twitter:description" content="I build and run infrastructure that stays up.">
+<meta name="twitter:description" content="Infrastructure engineer at Amazon, working on cloud and edge systems.">
 <meta name="twitter:image" content="https://mitrajparmar93.github.io/og-image.png">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -138,7 +138,7 @@ a { color: inherit; }
 .pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--dawn); box-shadow: 0 0 0 0 rgba(255,178,122,.6); animation: beacon 2.4s infinite; }
 @keyframes beacon { 0% { box-shadow: 0 0 0 0 rgba(255,178,122,.55); } 70% { box-shadow: 0 0 0 10px rgba(255,178,122,0); } 100% { box-shadow: 0 0 0 0 rgba(255,178,122,0); } }
 h1 {
-  font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: .98; letter-spacing: -0.048em; font-weight: 600;
+  font-size: clamp(2.3rem, 4.6vw, 4.2rem); line-height: 1.02; letter-spacing: -0.048em; font-weight: 600;
   margin: 0 0 28px; text-wrap: balance; color: #F4F6FF;
 }
 h1 .w { display: inline-block; padding-bottom: .06em; background: linear-gradient(180deg, #FFFFFF 35%, #B4BEEA 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -175,11 +175,8 @@ h1 .w { display: inline-block; padding-bottom: .06em; background: linear-gradien
   .globe { width: 150vw; right: -62vw; top: -30px; transform: none; opacity: .9; }
   .hero .wrap { padding-top: 320px; padding-bottom: 64px; }
   .drag-hint { display: none; }
-  .pill .long { display: none; }
   .tree { font-size: 12px; }
 }
-.pill .short { display: none; }
-@media (max-width: 560px) { .pill .short { display: inline; } }
 
 /* Load sequence: headline words rise out of blur, then the rest settles in. */
 .intro .w { opacity: 0; filter: blur(12px); transform: translateY(.35em); animation: rise .9s cubic-bezier(.2,.7,.1,1) forwards; animation-delay: calc(var(--i) * 55ms + 150ms); }
@@ -277,27 +274,6 @@ h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); letter-spacing: -0.045em; line-hei
 .tree b { color: var(--text); font-weight: 500; }
 .tree em { font-style: normal; color: var(--dawn); }
 .tree s { text-decoration: none; color: var(--faint); }
-
-/* ---------- How I work ---------- */
-.principles { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
-.principles > div { padding: 32px 32px 36px 0; border-bottom: 1px solid var(--line); }
-.principles > div:not(:nth-child(3n+1)) { padding-left: 32px; border-left: 1px solid var(--line); }
-.principles svg { width: 26px; height: 26px; color: var(--dawn); margin-bottom: 18px; }
-.principles h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -.03em; margin: 0 0 8px; }
-.principles p { color: var(--muted); margin: 0; font-size: 15.5px; max-width: 38ch; }
-@media (max-width: 900px) {
-  .principles { grid-template-columns: 1fr 1fr; }
-  .principles > div, .principles > div:not(:nth-child(3n+1)) { padding: 28px 24px 30px 0; border-left: 0; }
-  .principles > div:nth-child(2n) { padding-left: 24px; border-left: 1px solid var(--line); }
-}
-@media (max-width: 600px) {
-  .principles { grid-template-columns: 1fr; }
-  .principles > div:nth-child(2n) { padding-left: 0; border-left: 0; }
-}
-.platform-note { margin-top: 32px; padding: 26px 30px; border-radius: var(--r-tile); border: 1px solid rgba(255,178,122,.22);
-  background: linear-gradient(110deg, rgba(255,178,122,.08), rgba(169,184,255,.05)); }
-.platform-note p { margin: 0; color: var(--muted); max-width: 80ch; }
-.platform-note strong { color: var(--text); font-weight: 600; }
 
 /* ---------- Experience ---------- */
 .span-bar { margin-top: 28px; width: 100%; }
@@ -422,7 +398,6 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 <nav class="nav" aria-label="Primary">
   <a class="mono-mark" href="#top" aria-label="Mitraj Parmar, back to top">MP</a>
   <a class="link" href="#work">Work</a>
-  <a class="link opt" href="#approach">Approach</a>
   <a class="link" href="#experience">Experience</a>
   <a class="link opt" href="#stack">Stack</a>
   <a class="cta" href="#contact">Contact</a>
@@ -436,9 +411,9 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 
   <div class="wrap">
     <div class="hero-copy">
-      <div class="pill fade" style="--d:.05s"><i></i><span><span class="long">Systems Development Engineer II</span><span class="short">Systems Development Engineer</span> at Amazon Leo</span></div>
-      <h1 id="headline">I build and run<br> infrastructure that stays up.</h1>
-      <p class="lede fade" style="--d:.85s">I'm <strong>Mitraj Parmar</strong>, a systems development engineer at Amazon. Across an airline, a payments company, a payroll platform and three Amazon teams, one habit has stayed the same. After an outage, I go back and make that failure impossible.</p>
+      <div class="pill fade" style="--d:.05s"><i></i><span>Amazon Leo · Austin, TX</span></div>
+      <h1 id="headline">Infrastructure engineer at Amazon, working on cloud and edge systems.</h1>
+      <p class="lede fade" style="--d:.85s">I'm <strong>Mitraj Parmar</strong>. At Amazon Leo, Amazon's satellite internet program, I run the AWS infrastructure behind the program's engineering tools and manufacturing systems. Before that, I spent ten years on networks, cloud platforms and device fleets at Delta, PayPal, ADP, AWS and Amazon Robotics.</p>
       <div class="actions fade" style="--d:1s">
         <a class="btn primary" href="#contact" data-mail>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
@@ -479,14 +454,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <div class="wrap">
     <div class="head">
       <h2 id="work-h">Selected work</h2>
-      <p>I measure the problem first, then automate the fix and run it in production.</p>
+      <p>Recent projects.</p>
     </div>
 
     <div class="bento">
       <article class="tile t-alarm">
         <p class="where">Amazon Leo, 2026</p>
         <h3>Alarms tied to real impact</h3>
-        <p>Production alarms fired on how often things happened, with no tie to whether anyone was hurt. I built a tool that ranks every alarm by how closely it tracks real impact, then led the redesign to impact-correlated CloudWatch signals.</p>
+        <p>Alarms used to fire based on how often an event happened, not on whether it affected anyone. I built a tool that ranks each alarm by how closely it matches real impact on users, then led the move to CloudWatch alarms based on that impact.</p>
         <div class="chart" id="chart" data-mode="volume">
           <div class="chart-top">
             <small>Illustration: same week, two alarm strategies</small>
@@ -543,51 +518,6 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 └─ <b>tests/</b>  pytest <em>+ hypothesis</em></div>
         <ul class="tags"><li>Terraform</li><li>Fargate</li><li>Step Functions</li><li>CodePipeline</li></ul>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= APPROACH ================= -->
-<section class="section" id="approach" aria-labelledby="ap-h">
-  <div class="wrap">
-    <div class="head">
-      <h2 id="ap-h">How I work</h2>
-      <p>These habits have held on every team I've worked on, whatever the stack.</p>
-    </div>
-    <div class="principles">
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg>
-        <h3>Measure before I act</h3>
-        <p>I start with read-only access to the live system rather than the docs, and build an inventory before I propose a change.</p>
-      </div>
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
-        <h3>Follow the evidence</h3>
-        <p>If a signal contradicts my theory, I drop the theory. After two identical failures in a row, I look at a different layer.</p>
-      </div>
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>
-        <h3>Verify against the source of truth</h3>
-        <p>A diff or a dashboard can be confidently wrong. Before production changes I check the source of truth, and I ship once it's confirmed.</p>
-      </div>
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/><path d="M5 5v14"/></svg>
-        <h3>Finish the migration</h3>
-        <p>I ship the new path, retire the old one and delete the dead configuration.</p>
-      </div>
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
-        <h3>Delete what I can</h3>
-        <p>Often the best fix is deleting the component. Then it can't drift, page anyone or need patching.</p>
-      </div>
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
-        <h3>Write for whoever inherits it</h3>
-        <p>I write design docs that name their trade-offs and runbooks any on-call engineer can follow without me in the room.</p>
-      </div>
-    </div>
-    <div class="platform-note">
-      <p><strong>Build for self-service.</strong> Where I can, I build the path so other teams can onboard without waiting on my team. I also adopted AI coding agents early, and build tooling around them at work and on my own time.</p>
     </div>
   </div>
 </section>
@@ -701,7 +631,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <div class="wrap">
     <div class="head">
       <h2 id="stack-h">Stack</h2>
-      <p>Tools I use.</p>
+      <p>Tools I use day to day, including AI coding agents.</p>
     </div>
     <div class="stack">
       <div>
@@ -1078,7 +1008,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-45% 0px -50% 0px' });
-  ['work', 'approach', 'experience', 'stack'].forEach(id => io.observe(document.getElementById(id)));
+  ['work', 'experience', 'stack'].forEach(id => io.observe(document.getElementById(id)));
 
   /* ---------- Email: assembled at runtime so scrapers reading the HTML don't find it ---------- */
   const EMAIL = ['mitrajparmar93', 'gmail.com'].join(String.fromCharCode(64));
