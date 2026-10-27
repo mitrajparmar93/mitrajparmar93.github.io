@@ -224,6 +224,7 @@ h2 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); letter-spacing: -0.045em; line-hei
 .kv b { color: var(--text); font-weight: 500; }
 .t-tf    { grid-column: span 3; }
 .t-health { grid-column: span 3; }
+.t-health p + p { margin-top: 12px; }
 .t-ai { grid-column: span 6; display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px 40px; align-items: start; }
 .t-ai .ai-copy { display: flex; flex-direction: column; }
 .t-ai .ai-copy p:not(.where) { margin: 0 0 14px; }
@@ -586,12 +587,13 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <article class="tile t-health">
         <p class="where">Amazon Robotics, 2024–2026</p>
         <div class="big">40K</div>
-        <p>edge devices run the metrics and device-health agent I wrote. It replaced unreliable SSM pings with device, container and security-compliance metrics, broken down by device type, workflow and hardware. Fleet owners can now see whether pick, pack or ship is healthy without logging into a device.</p>
+        <p>edge devices run the metrics and device-health agent I wrote in async Rust. It replaced unreliable SSM pings with device, container and security-compliance metrics, broken down by device type, workflow and hardware. Fleet owners can now see whether pick, pack or ship is healthy without logging into a device.</p>
+        <p>Other software on the device uses it through a local API over a Unix domain socket, with no TCP. Apps can read metrics, publish their own custom metrics and subscribe to updates.</p>
         <div class="reach" role="img" aria-label="Rollout: 40,000 devices today, out of a 300,000-device goal">
           <div class="bar"><i></i></div>
           <div class="lbls"><span>40K today</span><span>300K goal</span></div>
         </div>
-        <ul class="tags"><li>IoT Greengrass</li><li>x86 and ARM</li><li>64+ device types</li><li>Compliance metrics</li></ul>
+        <ul class="tags"><li>Rust</li><li>Unix domain sockets</li><li>IoT Greengrass</li><li>x86 and ARM</li><li>64+ device types</li></ul>
       </article>
 
       <article class="tile t-lb">
@@ -660,7 +662,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <ul>
             <li>Contributed to AmazonEdgeOS, Amazon Robotics' first internal Linux distribution: an immutable Ubuntu-based OS with RAUC A/B partition updates and TPM2 encryption and unlock.</li>
             <li>Delivered security and compliance through Greengrass components and custom Debian agents for posture monitoring, package mirrors and secure updates.</li>
-            <li>Wrote a lightweight metrics and device-health agent for every AmazonEdgeOS device, from x86 thin clients to small ARM devices across 64+ device types, provisioned through IoT Greengrass. It runs on 40K devices today, with a goal of the full 300K fleet.</li>
+            <li>Wrote a lightweight metrics and device-health agent in async Rust for every AmazonEdgeOS device, from x86 thin clients to small ARM devices across 64+ device types, provisioned through IoT Greengrass. It runs on 40K devices today, with a goal of the full 300K fleet.</li>
+            <li>Exposed the agent as a local HTTP/1.1 API over a Unix domain socket, with no TCP. Software on the device can query subsystems and metrics, publish its own custom metrics and subscribe to updates, alongside the default device metrics.</li>
             <li>The agent replaced unreliable SSM logs and pings with device, container and security-compliance metrics that feed the central device management system. Metrics break down by device type, workflow (pick, pack, ship, dock) and hardware, so fleet owners see workflow health at a glance and engineers no longer log into devices to troubleshoot.</li>
             <li>Built fleet-wide security posture monitoring from scratch as a modular, self-serve platform that other teams join without filing a ticket.</li>
             <li>Built pipelines for internal Debian repositories with Python, Aptly and fpm, distributing authenticated packages to devices at scale through CloudFront.</li>
@@ -668,7 +671,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
             <li>Served as Tier-1 resolver in two on-call rotations, follow-the-sun for new systems and 24×7 for legacy fleets.</li>
             <li>Mentored interns and co-led device health and security initiatives.</li>
           </ul>
-          <ul class="tags" aria-label="Tools"><li>Debian</li><li>Ubuntu</li><li>RAUC</li><li>TPM2</li><li>Greengrass</li><li>Python</li><li>Aptly</li><li>CloudFront</li></ul>
+          <ul class="tags" aria-label="Tools"><li>Debian</li><li>Ubuntu</li><li>Rust</li><li>RAUC</li><li>TPM2</li><li>Greengrass</li><li>Python</li><li>Aptly</li><li>CloudFront</li></ul>
         </div>
       </details>
       <details id="xp-aws">
@@ -744,7 +747,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="stack">
       <div>
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8a4 4 0 0 1 0 10z"/></svg>Cloud, code and AI</h3>
-        <ul class="chips"><li>AWS</li><li>GovCloud</li><li>Terraform</li><li>AWS CDK</li><li>Python</li><li>Bash</li><li>Ansible</li><li>Systems Manager</li><li>Docker</li><li>Jenkins</li><li>GitLab CI</li><li>LLM gateways</li><li>MCP servers</li><li>Agentic AI</li><li>AI governance</li></ul>
+        <ul class="chips"><li>AWS</li><li>GovCloud</li><li>Terraform</li><li>AWS CDK</li><li>Python</li><li>Rust</li><li>Bash</li><li>Ansible</li><li>Systems Manager</li><li>Docker</li><li>Jenkins</li><li>GitLab CI</li><li>LLM gateways</li><li>MCP servers</li><li>Agentic AI</li><li>AI governance</li></ul>
       </div>
       <div>
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>Linux and edge</h3>
