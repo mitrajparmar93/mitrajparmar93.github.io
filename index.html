@@ -404,7 +404,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <h1 id="headline">I build and run<br> infrastructure that stays up.</h1>
       <p class="lede fade" style="--d:.85s">I'm <strong>Mitraj Parmar</strong>, a systems development engineer at Amazon. Across an airline, a payments company, a payroll platform and three Amazon teams, one habit has stayed the same. After an outage, I go back and make that failure impossible.</p>
       <div class="actions fade" style="--d:1s">
-        <a class="btn primary" href="mailto:mitrajparmar93@gmail.com">
+        <a class="btn primary" href="#contact" data-mail>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           Email me
         </a>
@@ -650,7 +650,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <h2 id="contact-h">Want to talk infrastructure?</h2>
     <p>Email is the best way to reach me.</p>
     <div class="mailrow">
-      <a href="mailto:mitrajparmar93@gmail.com">mitrajparmar93@gmail.com</a>
+      <a href="#contact" data-mail data-mail-text>mitrajparmar93 [at] gmail [dot] com</a>
       <button type="button" id="copy">Copy email</button>
     </div>
     <p class="alt">Or find me on <a href="https://www.linkedin.com/in/mitrajparmar">LinkedIn</a>.</p>
@@ -915,10 +915,17 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   }), { rootMargin: '-45% 0px -50% 0px' });
   ['work', 'approach', 'experience', 'stack'].forEach(id => io.observe(document.getElementById(id)));
 
+  /* ---------- Email: assembled at runtime so scrapers reading the HTML don't find it ---------- */
+  const EMAIL = ['mitrajparmar93', 'gmail.com'].join(String.fromCharCode(64));
+  document.querySelectorAll('[data-mail]').forEach(a => {
+    a.href = 'mailto:' + EMAIL;
+    if (a.hasAttribute('data-mail-text')) a.textContent = EMAIL;
+  });
+
   /* ---------- Copy email ---------- */
   const cb = document.getElementById('copy'), live = document.getElementById('copied');
   cb.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText('mitrajparmar93@gmail.com'); cb.textContent = 'Copied'; live.textContent = 'Email address copied'; }
+    try { await navigator.clipboard.writeText(EMAIL); cb.textContent = 'Copied'; live.textContent = 'Email address copied'; }
     catch { cb.textContent = 'Press Ctrl+C'; }
     setTimeout(() => { cb.textContent = 'Copy email'; live.textContent = ''; }, 2000);
   });
