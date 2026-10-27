@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Mitraj Parmar</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#050816">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&display=swap" rel="stylesheet">
+<style>
+  :root { --space: #050816; --text: #EEF1FF; --muted: #8D96B8; --ice: #A9B8FF; --dawn: #FFB27A; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; display: grid; place-items: center; padding: 24px; text-align: center;
+    font-family: "Geist", ui-sans-serif, system-ui, sans-serif; color: var(--text); -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(50% 45% at 50% 40%, rgba(80, 96, 220, .22), transparent 70%),
+      radial-gradient(40% 30% at 50% 100%, rgba(255, 140, 110, .12), transparent 70%),
+      var(--space);
+  }
+  .orbit { width: 160px; height: 160px; margin: 0 auto 36px; position: relative; }
+  .orbit .planet { position: absolute; inset: 40px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #1A2458, #070B22); box-shadow: 0 0 0 1.5px rgba(169,184,255,.35), 0 0 60px rgba(120,140,255,.3); }
+  .orbit .ring { position: absolute; inset: 0; border-radius: 50%; border: 1.5px dashed rgba(169,184,255,.25); animation: spin 14s linear infinite; }
+  .orbit .ring::after { content: ""; position: absolute; top: 50%; left: -6px; width: 11px; height: 11px; margin-top: -5.5px; border-radius: 50%; background: var(--dawn); box-shadow: 0 0 14px var(--dawn); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .orbit .ring { animation: none; } }
+  h1 { font-size: clamp(2rem, 6vw, 3.4rem); letter-spacing: -0.045em; line-height: 1.05; font-weight: 600; margin: 0 0 14px; }
+  p { color: var(--muted); font-size: 1.1rem; margin: 0 0 32px; }
+  a { display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px; padding: 14px 24px; border-radius: 999px; background: var(--text); color: var(--space); transition: background .2s; }
+  a:hover { background: var(--dawn); }
+  a:focus-visible { outline: 2px solid var(--dawn); outline-offset: 3px; }
+</style>
+</head>
+<body>
+  <main>
+    <div class="orbit" aria-hidden="true"><div class="ring"></div><div class="planet"></div></div>
+    <h1>Signal lost.</h1>
+    <p>This page doesn't exist, or it moved.</p>
+    <a href="/">Back to the homepage</a>
+  </main>
+</body>
+</html>
